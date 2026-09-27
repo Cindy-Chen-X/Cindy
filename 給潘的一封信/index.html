@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>給潘的一封信 🌙</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family:
+        "Noto Sans TC",
+        "Microsoft JhengHei",
+        sans-serif;
+    color: #f8f7ff;
+}
+
+body {
+    overflow-x: hidden;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(112, 151, 255, 0.20), transparent 28%),
+        radial-gradient(circle at 80% 70%, rgba(157, 111, 255, 0.18), transparent 30%),
+        linear-gradient(145deg, #07142f, #10275a 45%, #17143f);
+}
+
+/* =========================
+   星空
+========================= */
+
+.stars,
+.stars::before,
+.stars::after {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.stars {
+    z-index: 0;
+}
+
+.stars::before,
+.stars::after {
+    content: "";
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.65) 0 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.45) 0 1px, transparent 1.5px);
+
+    background-size:
+        97px 113px,
+        151px 137px,
+        223px 197px;
+
+    background-position:
+        10px 20px,
+        50px 80px,
+        100px 40px;
+
+    animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+.stars::after {
+    opacity: .45;
+    animation-delay: 2s;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: .35;
+    }
+
+    to {
+        opacity: .9;
+    }
+}
+
+
+/* =========================
+   月亮
+========================= */
+
+.moon {
+    position: fixed;
+    top: 8vh;
+    right: 9vw;
+
+    width: 74px;
+    height: 74px;
+
+    border-radius: 50%;
+
+    background: #fffbe9;
+
+    box-shadow:
+        0 0 18px rgba(255,255,230,.8),
+        0 0 45px rgba(255,255,220,.3);
+
+    z-index: 1;
+}
+
+.moon::after {
+    content: "";
+
+    position: absolute;
+
+    width: 74px;
+    height: 74px;
+
+    border-radius: 50%;
+
+    background: #091736;
+
+    left: 23px;
+    top: -9px;
+}
+
+
+/* =========================
+   流星
+========================= */
+
+.shooting-star {
+    position: fixed;
+
+    width: 100px;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0),
+            rgba(255,255,255,.9)
+        );
+
+    transform: rotate(-35deg);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.shooting-star.one {
+    top: 25%;
+    left: -120px;
+
+    animation:
+        shooting 8s linear infinite;
+}
+
+.shooting-star.two {
+    top: 55%;
+    left: -150px;
+
+    animation:
+        shooting 11s linear infinite 4s;
+}
+
+@keyframes shooting {
+
+    0% {
+        transform:
+            translate(0,0)
+            rotate(-35deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: .9;
+    }
+
+    20% {
+        transform:
+            translate(115vw,70vh)
+            rotate(-35deg);
+
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   主容器
+========================= */
+
+.container {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(92%,760px);
+
+    margin: auto;
+
+    padding:
+        55px 0 80px;
+}
+
+
+/* =========================
+   頁面
+========================= */
+
+.page {
+    display: none;
+
+    min-height: 72vh;
+
+    align-items: center;
+    justify-content: center;
+
+    animation:
+        pageIn .8s ease;
+}
+
+.page.active {
+    display: flex;
+}
+
+@keyframes pageIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================
+   卡片
+========================= */
+
+.card {
+    width: 100%;
+
+    padding:
+        42px 42px 35px;
+
+    border-radius: 28px;
+
+    background:
+        rgba(9,20,52,.66);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.30),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    backdrop-filter:
+        blur(13px);
+
+    -webkit-backdrop-filter:
+        blur(13px);
+}
+
+
+/* =========================
+   文字
+========================= */
+
+.page-number {
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255,255,255,.52);
+
+    margin-bottom: 18px;
+}
+
+h1 {
+    margin:
+        0 0 25px;
+
+    font-size:
+        clamp(28px,6vw,43px);
+
+    line-height:
+        1.4;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+}
+
+h2 {
+    margin:
+        0 0 22px;
+
+    font-size:
+        clamp(24px,5vw,34px);
+
+    line-height:
+        1.45;
+
+    font-weight: 600;
+}
+
+p {
+    margin:
+        0 0 18px;
+
+    font-size: 17px;
+
+    line-height: 2;
+
+    letter-spacing: .4px;
+
+    color:
+        rgba(255,255,255,.91);
+}
+
+
+/* =========================
+   導覽
+========================= */
+
+.navigation {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 22px;
+}
+
+.nav-button {
+    border: none;
+
+    border-radius: 999px;
+
+    padding:
+        12px 23px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    color: white;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border:
+        1px solid rgba(255,255,255,.16);
+
+    transition:
+        .25s ease;
+}
+
+.nav-button:hover {
+    background:
+        rgba(255,255,255,.21);
+
+    transform:
+        translateY(-2px);
+}
+
+.nav-button.primary {
+    background:
+        rgba(150,170,255,.30);
+}
+
+.nav-button:disabled {
+    opacity: .25;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+}
+
+.progress {
+    text-align: center;
+
+    margin-top: 15px;
+
+    font-size: 12px;
+
+    color:
+        rgba(255,255,255,.48);
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   清單
+========================= */
+
+.checklist {
+    margin-top: 28px;
+}
+
+.check-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+        14px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.09);
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+.check {
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(255,255,255,.08);
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size: 12px;
+}
+
+.done .check {
+    background:
+        rgba(180,205,255,.35);
+
+    color: white;
+}
+
+
+/* =========================
+   五元冰棒彩蛋
+========================= */
+
+.easter {
+    cursor: pointer;
+}
+
+.easter:hover {
+    opacity: .75;
+}
+
+.easter-message {
+    display: none;
+
+    margin-top: 22px;
+
+    padding:
+        18px 20px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+}
+
+.easter-message.show {
+    display: block;
+
+    animation:
+        pageIn .5s ease;
+}
+
+
+/* =========================
+   照片
+========================= */
+
+.photo-button {
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    padding:
+        12px 22px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.photos {
+    display: none;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.photos.show {
+    display: grid;
+}
+
+.photo-item {
+    min-width: 0;
+}
+
+.photo-item img {
+    width: 100%;
+
+    aspect-ratio:
+        1 / 1;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    display: block;
+}
+
+.photo-caption {
+    margin-top: 9px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    color:
+        rgba(255,255,255,.72);
+
+    text-align: center;
+}
+
+
+/* =========================
+   約會表單
+========================= */
+
+.invite-form {
+    margin-top: 25px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    color:
+        rgba(255,255,255,.72);
+}
+
+.form-group input,
+.form-group textarea {
+
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 14px;
+
+    padding:
+        13px 14px;
+
+    color: white;
+
+    background:
+        rgba(255,255,255,.09);
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    font-size: 16px;
+
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+
+    border-color:
+        rgba(255,255,255,.35);
+}
+
+.form-group textarea {
+
+    min-height: 120px;
+
+    resize: vertical;
+}
+
+.submit-button {
+
+    width: 100%;
+
+    border: none;
+
+    border-radius: 999px;
+
+    padding: 15px;
+
+    color: white;
+
+    background:
+        rgba(155,175,255,.34);
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.submit-button:hover {
+
+    background:
+        rgba(155,175,255,.45);
+}
+
+.success {
+
+    display: none;
+
+    margin-top: 22px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,.08);
+}
+
+.success.show {
+    display: block;
+}
+
+
+/* =========================
+   手機
+========================= */
+
+@media (max-width:600px) {
+
+    .container {
+        width: 91%;
+
+        padding-top: 38px;
+    }
+
+    .moon {
+        width: 55px;
+        height: 55px;
+
+        top: 5vh;
+        right: 7vw;
+    }
+
+    .moon::after {
+        width: 55px;
+        height: 55px;
+
+        left: 17px;
+        top: -7px;
+    }
+
+    .card {
+        padding:
+            30px 23px 27px;
+
+        border-radius: 23px;
+    }
+
+    p {
+        font-size: 16px;
+
+        line-height: 1.95;
+    }
+
+    .navigation {
+        gap: 8px;
+    }
+
+    .nav-button {
+        padding:
+            10px 17px;
+
+        font-size: 14px;
+    }
+
+    .photos {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-item img {
+        aspect-ratio:
+            4 / 3;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="stars"></div>
+
+<div class="moon"></div>
+
+<div class="shooting-star one"></div>
+
+<div class="shooting-star two"></div>
+
+
+<div class="container">
+
+
+<!-- ==================================================
+     封面
+================================================== -->
+
+<section class="page active">
+
+    <div class="card">
+
+        <div class="page-number">
+            給潘塏澄的一封信
+        </div>
+
+        <h1>
+            三十天，說長不長，說短也不短。
+        </h1>
+
+        <p>
+            給我們的第一個月。
+        </p>
+
+        <p>
+            🌙
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     第 1 頁
+================================================== -->
+
+<section class="page">
+
+    <div class="card">
+
+        <div class="page-number">
+            01
+        </div>
+
+        <p>
+            三十天說長不長，說短也不短。只是回頭想想，我們實際相處的時間，好像遠遠不及三十天。甚至有時候會覺得，我們現在的交流比起曖昧的時候還少了一些，反而是午夜時的親密接觸，變得比言語交流更多。
+        </p>
+
+        <p>
+            但老實說，跟你在一起的時候，我是真的很開心。就算我們只是抱著彼此、沒有說什麼話，我也會覺得很治癒、很安心。好像也只有在那個時候，我才會很真切地感覺到：「你真的是我的男朋友。」
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     第 2 頁
+================================================== -->
+
+<section class="page">
+
+    <div class="card">
+
+        <div class="page-number">
+            02
+        </div>
+
+        <p>
+            你總是跟我說抱歉，說沒辦法抽出那麼多時間陪我。每次聽到的時候，我其實都會有一點心酸。我不是不懂你有多忙，也知道很多事情不是你想怎麼安排就能怎麼安排。只是有時候，我不知道自己該怎麼面對這些道歉。不接受，好像也沒有辦法改變什麼；接受了，好像也沒辦法真的把那些等待時的難過一筆勾銷。
+        </p>
+
+        <p>
+            我想了很久，我覺得自己真正缺少的是一種「我也在你的生活裡」的感覺。我知道你其實一直有努力把我帶進你的生活裡。你願意讓我認識你的朋友，也不避諱讓我看到、甚至參與你的訊息；你也會努力把工作做完，想辦法留時間給我。這些事情我都有感受到，也真的很珍惜。
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     第 3 頁
+================================================== -->
+
+<section class="page">
+
+    <div class="card">
+
+        <div class="page-number">
+            03
+        </div>
+
+        <p>
+            可是另一方面，我自己的生活好像跟以前沒有太大的不同。大多數時候，我還是一個人吃飯、一個人讀書、一個人完成很多事情。偶爾會讓我覺得，我們好像還是各自生活，只是在晚上的某些時候，才有一小段時間變成「我們」。
+        </p>
+
+        <p>
+            其實我期待的好像一直都不是什麼很盛大的約會。我只是想跟你一起吃頓飯、散散步、逛逛東西，做一些很普通、很日常的事情。不用每一次見面都需要配合你的工作，也不用每一次見面都要讓彼此那麼辛苦。
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     第 4 頁
+================================================== -->
+
+<section class="page">
+
+    <div class="card">
+
+        <div class="page-number">
+            04
+        </div>
+
+        <p>
+            你知道我許的第三個生日願望是什麼嗎？是希望有一天，我們可以不用那麼辛苦地見面。希望有一天，是不那麼疲憊的你，和不用熬夜的我，也可以好好見上一面。雖然我自己也知道，這個願望近期可能還不太容易實現。
+        </p>
+
+        <p>
+            我相信我有跟你說過，我其實是一個很少熬夜的人。現在晚上出來見你，是我心甘情願的，因為我真的很想見你，所以即使知道隔天可能會很累，我還是會捨不得拒絕。但我也慢慢發現，心甘情願不代表這就是一個可以一直維持下去的相處方式。我還是需要原本的生活和作息，也希望我們的見面有一天不需要靠犧牲睡眠才能成立。
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     第 5 頁
+================================================== -->
+
+<section class="page">
+
+    <div class="card">
+
+        <div class="page-number">
+            05
+        </div>
+
+        <p>
+            聊天的時候，我總是開玩笑說系會比我重要，你都會跟我說不是那麼一回事。知道你現在作為系會長，身上的壓力真的很大，所以當你忙到幾乎消失的時候，我好像也慢慢習慣了。甚至有時候會覺得，只要把自己的念想跟期待壓低一點，就比較不會那麼難過。
+        </p>
+
+        <p>
+            可是我最近才發現，原來我不是沒有期待，只是慢慢不敢期待了。你之前跟我說過：「不要怕給你壓力。」所以我有時候也會想，這句話現在還成立嗎？因為每次心情不太好的時候，我其實不太會第一時間跟你說。常常會覺得，我現在的情緒好像沒有你的工作那麼緊急；或者你當下根本走不開，就算告訴你，好像也只是讓你多一份無能為力和壓力。所以我有時候會想，告訴你「我需要你」，對你來說到底會是一種負擔，還是其實你真的希望我可以把這些真實的需求告訴你？
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     第 6 頁
+================================================== -->
+
+<section class="page">
+
+    <div class="card">
+
+        <div class="page-number">
+            06
+        </div>
+
+        <p>
+            還有一件事情，其實我一直有一點難過。很多時候，你的不開心，我反而是跟你摯友裡的人差不多同時知道，甚至有時候是他們知道了，我才知道。我不知道你是不是不希望把太多負面的情緒帶給我，或者是覺得要跟我解釋事情的來龍去脈太麻煩，也可能只是單純因為我們還沒有熟悉到那個程度。不管原因是哪一個，我其實都會有一點難過。因為我也希望有一天，你遇到不開心的事情時，會自然地想到：「這件事情我也可以跟她說。」
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     第 7 頁
+================================================== -->
+
+<section class="page">
+
+    <div class="card">
+
+        <div class="page-number">
+            07
+        </div>
+
+        <p>
+            至於訊息，我知道你的訊息真的很多，爆炸性的多，我也知道你不是故意忽略我。不過有時候，你跟我分享了你的生活，我很認真地回應你，但你可能只回其中幾句，接著又繼續分享自己的事情。久了我會有一點不知道，自己的那些回覆對你來說是不是有被接住。有時候甚至會想，那我是不是按個愛心代表「已閱」就好了。
+        </p>
+
+        <p>
+            我知道這聽起來可能有點小題大作，畢竟都已經在一起了，我卻還是會在意你有沒有回訊息。有時候看到你四、五個小時沒有回我，卻已經回了很多工作上的訊息，我還是會忍不住想：「跟我說一聲你現在在忙，好像也沒有那麼難吧。」我沒有希望你任何時候都要秒回我，也沒有要你把我變成所有事情的優先順序。只是希望即使你很忙，我也能感覺到我們還是在交流，而不是我一直在等你有空。
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     第 8 頁
+================================================== -->
+
+<section class="page">
+
+    <div class="card">
+
+        <div class="page-number">
+            08
+        </div>
+
+        <p>
+            其實我也不知道你看到這些之後會怎麼想。我沒有覺得這些事情需要我們一次全部解決，也不是想在交往一個月的時候，突然丟給你一大堆問題。只是這些感受確實都存在，我也不希望因為害怕造成你的壓力，就一直假裝自己沒有感覺。如果我們都願意的話，或許可以慢慢找到一個更適合我們的相處方式。
+        </p>
+
+        <p>
+            跟你見面的時間，對我來說一直都是一天裡很治癒的時刻。就算只是陪你工作、坐在旁邊，對我來說都會有一種「我們正在一起生活」的感覺。所以我才會這麼在意這些事情。希望有一天，我們不再只是「你是你的生活、我是我的生活，然後晚上才有一小段時間變成我們」，而是可以慢慢變成「你的生活裡有我，我的生活裡也有你。」我覺得那就是我現在最期待的「我們」。
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     生活清單
+================================================== -->
+
+<section class="page">
+
+    <div class="card">
+
+        <div class="page-number">
+            我們的生活紀錄
+        </div>
+
+        <h2>
+            還有一些想慢慢解鎖的事情
+        </h2>
+
+        <div class="checklist">
+
+            <!-- 已完成 -->
+
+            <div class="check-item done">
+
+                <span class="check">
+                    ✓
+                </span>
+
+                <span>
+                    解鎖第一次在台南吃飯
+                </span>
+
+            </div>
+
+
+            <div class="check-item done">
+
+                <span class="check">
+                    ✓
+                </span>
+
+                <span>
+                    去河樂廣場
+                </span>
+
+            </div>
+
+
+            <div class="check-item done">
+
+                <span class="check">
+                    ✓
+                </span>
+
+                <span>
+                    幫對方慶生
+                </span>
+
+            </div>
+
+
+            <!-- 未完成 -->
+
+            <div class="check-item">
+
+                <span class="check">
+                    ○
+                </span>
+
+                <span>
+                    去海邊
+                </span>
+
+            </div>
+
+
+            <div class="check-item">
+
+                <span class="check">
+                    ○
+                </span>
+
+                <span>
+                    追日落
+                </span>
+
+            </div>
+
+
+            <div class="check-item">
+
+                <span class="check">
+                    ○
+                </span>
+
+                <span>
+                    去奇美放風箏
+                </span>
+
+            </div>
+
+
+            <!-- 五元冰棒彩蛋 -->
+
+            <div class="check-item">
+
+                <span class="check">
+                    ○
+                </span>
+
+                <span
+                    class="easter"
+                    id="iceCreamEgg">
+
+                    陪我吃第二支五塊的冰棒 🍦
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="easter-message"
+            id="iceCreamMessage">
+
+            <p>
+                前幾天去全家買了一支古娃娃的冰棒，
+                店員突然問我：「第二支五塊要不要加購？」
+            </p>
+
+            <p>
+                然後我心裡默默想：
+                都已經有男朋友了，
+                為什麼我還是沒有人陪我吃第二支冰啊？
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     照片
+================================================== -->
+
+<section class="page">
+
+    <div class="card">
+
+        <div class="page-number">
+            我們的照片 📷
+        </div>
+
+        <h2>
+            一些我想留下來的小片段
+        </h2>
+
+        <button
+            class="photo-button"
+            id="photoButton">
+
+            看照片 👀
+
+        </button>
+
+
+        <div
+            class="photos"
+            id="photos">
+
+
+            <div class="photo-item">
+
+                <img
+                    src="photos/01.jpg"
+                    alt="第一次牽手手">
+
+                <div class="photo-caption">
+                    第一次牽手手
+                </div>
+
+            </div>
+
+
+            <div class="photo-item">
+
+                <img
+                    src="photos/02.jpg"
+                    alt="不喜歡畫畫的你陪我塗鴉">
+
+                <div class="photo-caption">
+                    不喜歡畫畫的你陪我塗鴉
+                </div>
+
+            </div>
+
+
+            <div class="photo-item">
+
+                <img
+                    src="photos/03.jpg"
+                    alt="第一次在台南吃飯">
+
+                <div class="photo-caption">
+                    第一次在台南吃飯~
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     約會邀請
+================================================== -->
+
+<section class="page">
+
+    <div class="card">
+
+        <div class="page-number">
+            最後，換你了 🌙
+        </div>
+
+        <h2>
+            約我出去吧。
+        </h2>
+
+        <p>
+            不用很盛大。
+            一頓飯、一段散步，
+            或者只是很普通的一個下午都可以。
+        </p>
+
+        <p>
+            你選一天，我去見你。
+        </p>
+
+
+        <form
+            id="dateForm"
+            class="invite-form"
+            action="https://formsubmit.co/ajax/xinyuc92@gmail.com"
+            method="POST">
+
+
+            <input
+                type="hidden"
+                name="_subject"
+                value="💌 潘的約會邀請">
+
+
+            <input
+                type="hidden"
+                name="_template"
+                value="table">
+
+
+            <input
+                type="hidden"
+                name="_url"
+                id="formUrl"
+                value="">
+
+
+            <input
+                type="text"
+                name="_honey"
+                style="display:none">
+
+
+            <div class="form-group">
+
+                <label for="date">
+                    你想約哪一天？
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    name="約會日期"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="time">
+                    大概幾點？
+                </label>
+
+                <input
+                    type="time"
+                    id="time"
+                    name="約會時間"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="place">
+                    想去哪裡？
+                </label>
+
+                <input
+                    type="text"
+                    id="place"
+                    name="約會地點"
+                    placeholder="例如：一起吃飯、逛街、散步……"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="message">
+                    還有什麼想跟我說的嗎？
+                </label>
+
+                <textarea
+                    id="message"
+                    name="潘想說的話"
+                    placeholder="可以寫任何你想說的話。"></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-button">
+
+                約我出去 🌙
+
+            </button>
+
+        </form>
+
+
+        <div
+            class="success"
+            id="success">
+
+            <h2>
+                約會成立 🌙
+            </h2>
+
+            <p id="successText"></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     上一頁 / 下一頁
+================================================== -->
+
+<div class="navigation">
+
+    <button
+        class="nav-button"
+        id="prevButton">
+
+        ← 上一頁
+
+    </button>
+
+
+    <button
+        class="nav-button primary"
+        id="nextButton">
+
+        下一頁 →
+
+    </button>
+
+</div>
+
+
+<div
+    class="progress"
+    id="progress">
+
+    1 / 13
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   分頁
+===================================================== */
+
+const pages =
+    document.querySelectorAll(".page");
+
+const prevButton =
+    document.getElementById("prevButton");
+
+const nextButton =
+    document.getElementById("nextButton");
+
+const progress =
+    document.getElementById("progress");
+
+let currentPage = 0;
+
+
+function updatePage() {
+
+    pages.forEach(
+        (page, index) => {
+
+            page.classList.toggle(
+                "active",
+                index === currentPage
+            );
+
+        }
+    );
+
+
+    prevButton.disabled =
+        currentPage === 0;
+
+
+    if (
+        currentPage === pages.length - 1
+    ) {
+
+        nextButton.style.display =
+            "none";
+
+    } else {
+
+        nextButton.style.display =
+            "block";
+
+    }
+
+
+    progress.textContent =
+        `${currentPage + 1} / ${pages.length}`;
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+nextButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            currentPage <
+            pages.length - 1
+        ) {
+
+            currentPage++;
+
+            updatePage();
+
+        }
+
+    }
+);
+
+
+prevButton.addEventListener(
+    "click",
+    () => {
+
+        if (currentPage > 0) {
+
+            currentPage--;
+
+            updatePage();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   鍵盤左右鍵
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "ArrowRight" &&
+            currentPage < pages.length - 1
+        ) {
+
+            currentPage++;
+
+            updatePage();
+
+        }
+
+
+        if (
+            event.key === "ArrowLeft" &&
+            currentPage > 0
+        ) {
+
+            currentPage--;
+
+            updatePage();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   五元冰棒彩蛋
+===================================================== */
+
+const iceCreamEgg =
+    document.getElementById(
+        "iceCreamEgg"
+    );
+
+const iceCreamMessage =
+    document.getElementById(
+        "iceCreamMessage"
+    );
+
+
+iceCreamEgg.addEventListener(
+    "click",
+    () => {
+
+        iceCreamMessage.classList.toggle(
+            "show"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   照片
+===================================================== */
+
+const photoButton =
+    document.getElementById(
+        "photoButton"
+    );
+
+const photos =
+    document.getElementById(
+        "photos"
+    );
+
+
+photoButton.addEventListener(
+    "click",
+    () => {
+
+        photos.classList.toggle(
+            "show"
+        );
+
+
+        if (
+            photos.classList.contains(
+                "show"
+            )
+        ) {
+
+            photoButton.textContent =
+                "把照片收起來";
+
+        } else {
+
+            photoButton.textContent =
+                "看照片 👀";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   FormSubmit
+===================================================== */
+
+const dateForm =
+    document.getElementById(
+        "dateForm"
+    );
+
+const success =
+    document.getElementById(
+        "success"
+    );
+
+const successText =
+    document.getElementById(
+        "successText"
+    );
+
+const formUrl =
+    document.getElementById(
+        "formUrl"
+    );
+
+
+formUrl.value =
+    window.location.href;
+
+
+dateForm.addEventListener(
+    "submit",
+    async (event) => {
+
+        event.preventDefault();
+
+
+        const submitButton =
+            dateForm.querySelector(
+                ".submit-button"
+            );
+
+
+        submitButton.disabled =
+            true;
+
+        submitButton.textContent =
+            "正在送出…… 🌙";
+
+
+        const formData =
+            new FormData(dateForm);
+
+        const payload = {};
+
+
+        formData.forEach(
+            (value, key) => {
+
+                payload[key] = value;
+
+            }
+        );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    dateForm.action,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json",
+
+                            "Accept":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(
+                                payload
+                            )
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                response.ok &&
+                data.success
+            ) {
+
+                const date =
+                    document.getElementById(
+                        "date"
+                    ).value;
+
+                const time =
+                    document.getElementById(
+                        "time"
+                    ).value;
+
+                const place =
+                    document.getElementById(
+                        "place"
+                    ).value;
+
+
+                successText.innerHTML =
+                    `那我們就約在
+                    <strong>${date}</strong>，
+                    <strong>${time}</strong>，
+                    去<strong>${place}</strong>。<br><br>
+                    我有收到你的邀請了。`;
+
+
+                dateForm.style.display =
+                    "none";
+
+
+                success.classList.add(
+                    "show"
+                );
+
+
+            } else {
+
+                throw new Error(
+                    "送出失敗"
+                );
+
+            }
+
+
+        } catch (error) {
+
+            alert(
+                "好像沒有成功送出去 🥺\n\n" +
+                "如果這個網頁目前是直接從電腦資料夾開啟，" +
+                "請先把網站放到網路上再測試約會邀請功能。"
+            );
+
+
+            submitButton.disabled =
+                false;
+
+
+            submitButton.textContent =
+                "約我出去 🌙";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   初始化
+===================================================== */
+
+updatePage();
+
+</script>
+
+</body>
+</html>
